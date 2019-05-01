@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+2019_VMS_ICES-QC\.Rproj
+
+# also ignore the downloaded data
+/bootstrap/data/
