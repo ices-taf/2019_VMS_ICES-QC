@@ -1,0 +1,13 @@
+{
+  // list of countries to run QC for
+  // "countries": ["BEL", "DEU", "DNK", "EST", "FIN", "FRA", "GBR", "IRL", "ICE", "Latvia", "LTU", "nld", "NO", "POL", "PRT", "SWE", "esp"],
+  // "countries": ["BEL", "DNK", "esp", "EST", "FIN", "FRA", "ICE", "IRL", "Latvia", "LTU", "nld", "POL", "PRT", "SWE"],
+  "countries": ["PRT"],
+
+  // data call years to compare over
+  "years": [2018],
+
+  // database connection string
+  "db_connection": "Driver={SQL Server};Server=SQL06;Database=VMS;Trusted_Connection=yes"
+}
+
