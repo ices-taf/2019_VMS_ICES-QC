@@ -17,7 +17,7 @@ library(jsonlite)
 source("utilities.R")
 
 # settings
-config <- read_json("config.json", simplifyVector = TRUE)
+config <- read_json("bootstrap/config/config.json", simplifyVector = TRUE)
 
 # create directories
 mkdir(config$data_dir)
