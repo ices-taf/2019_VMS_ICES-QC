@@ -7,7 +7,7 @@ Install the icesTAF package, version >=2.3 from CRAN.
 
 Then open R in the `2019_VMS_ICES-QC` directory and run:
 
-to download data (as off 1/5/2019, will improve this):
+to download data (as of 1/5/2019, will work to improve this):
 ```r
 taf.bootstrap()
 setwd("bootstrap")
@@ -15,7 +15,8 @@ process.bib("DATA.bib")
 setwd("..")
 ```
 
-then to run the reports
+then to run the reports (if you don't include the `clean = FALSE` it will delete 
+all the previously run reports)
 ```r
 sourceAll(clean = FALSE)
 ```
