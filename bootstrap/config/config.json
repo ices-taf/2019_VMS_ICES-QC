@@ -1,8 +1,8 @@
 {
   // list of countries to run QC for
-  // "countries": ["BEL", "DEU", "DNK", "EST", "FIN", "FRA", "GBR", "IRL", "ICE", "Latvia", "LTU", "nld", "NO", "POL", "PRT", "SWE", "esp"],
+  // "countries": ["BEL", "DEU", "DNK", "EST", "FIN", "FRA", "GBR", "IRL", "ICE", "Latvia", "LTU", "nld", "NOR", "POL", "PRT", "SWE", "esp"],
   // "countries": ["BEL", "DNK", "esp", "EST", "FIN", "FRA", "ICE", "IRL", "Latvia", "LTU", "nld", "POL", "PRT", "SWE"],
-  "countries": ["PRT"],
+  "countries": ["BEL", "EST"],
 
   // data call years to compare over
   "years": [2018],
