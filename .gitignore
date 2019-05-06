@@ -8,5 +8,6 @@
 # also ignore the downloaded data
 /bootstrap/data/
 
-# only care about pdfs
+# only care about pdfs?
 /report/*.md
+/report/*.pdf
