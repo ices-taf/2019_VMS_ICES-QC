@@ -9,6 +9,7 @@ Then open R in the `2019_VMS_ICES-QC` directory and run:
 
 to download data (as of 1/5/2019, will work to improve this):
 ```r
+library(icesTAF)
 setwd("bootstrap")
 cp("initial/config", ".")
 process.bib("DATA.bib")
