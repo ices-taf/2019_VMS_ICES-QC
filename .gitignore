@@ -9,5 +9,8 @@
 /bootstrap/data/
 
 # only care about pdfs?
-/report/*.md
-/report/*.pdf
+/report/
+/QC*/
+
+# taf stuff
+/bootstrap/library/
