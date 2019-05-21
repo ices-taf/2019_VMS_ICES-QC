@@ -22,20 +22,12 @@ config <- read_json("bootstrap/config/config.json", simplifyVector = TRUE)
 # connect to DB
 conn <- odbcDriverConnect(connection = config$db_connection)
 
-if (FALSE) {  # i.e. don't run
-  # peek at coutry codes
-  sqlQuery(conn, "SELECT country, n = count(country) FROM dbo._ICES_VMS_Datacall_LE group by country")
-  sqlQuery(conn, "SELECT country, n = count(country) FROM dbo._ICES_VMS_Datacall_VMS group by country")
-  # look at norway
-  sqlQuery(conn, "SELECT year, country, n = count(country) FROM dbo._ICES_VMS_Datacall_LE where country in ('NOR', 'NO') group by country, year ")
-  sqlQuery(conn, "SELECT year, country, n = count(country) FROM dbo._ICES_VMS_Datacall_VMS where country in ('NOR', 'NO') group by country, year ")
-}
 
 for (country in config$countries) {
   msg("downloading LE data for ... ", country)
 
   # set up sql command
-  sqlq <- sprintf("SELECT * FROM [dbo].[_ICES_VMS_Datacall_LE] WHERE country = '%s'", country)
+  sqlq <- sprintf("SELECT * FROM [dbo].[_ICES_VMS_Datacall_LE] WHERE country = '%s' and year <= %i", country, max(config$years))
   fname <- paste0("bootstrap/data/ICES_LE_", country, ".csv")
 
   # fetch
@@ -49,7 +41,7 @@ for (country in config$countries) {
   msg("downloading VMS data for ... ", country)
 
   # set up sql command
-  sqlq <- sprintf("SELECT * FROM [dbo].[_ICES_VMS_Datacall_VMS] WHERE country = '%s'", country)
+  sqlq <- sprintf("SELECT * FROM [dbo].[_ICES_VMS_Datacall_VMS] WHERE country = '%s' and year <= %i", country, max(config$years))
   fname <- paste0("bootstrap/data/ICES_VE_", country, ".csv")
 
   # fetch
