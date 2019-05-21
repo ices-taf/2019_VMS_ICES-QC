@@ -33,12 +33,6 @@ my_png <- function(file, width, height) {
   png(file, width = width, height = height, 
       res = 800, units = "in", pointsize = 20)
 }
-
-library(plyr)
-library(ggplot2)
-library(RColorBrewer)
-library(doBy)
-library(reshape2)
 ```
 
 ```{r load-data}

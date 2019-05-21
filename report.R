@@ -13,6 +13,12 @@ library(icesTAF)
 library(jsonlite)
 taf.library(vmstools)
 
+library(plyr)
+library(ggplot2)
+library(RColorBrewer)
+library(doBy)
+library(reshape2)
+
 # utiities
 source("utilities.R")
 
