@@ -3,19 +3,15 @@
 ## Before:
 ## After:
 
-library(icesTAF)
 
+# create report directory
 mkdir("report")
-
-
-
-# install vmstools from github
-#devtools::install_github("nielshintzen/vmstools/vmstools")
 
 # libraries
 library(rmarkdown)
 library(icesTAF)
 library(jsonlite)
+taf.library(vmstools)
 
 # utiities
 source("utilities.R")
@@ -23,8 +19,6 @@ source("utilities.R")
 # settings
 config <- read_json("bootstrap/config/config.json", simplifyVector = TRUE)
 
-# create report directory
-mkdir("report")
 
 # loop over countries
 for (country in config$countries) {
@@ -46,7 +40,7 @@ for (country in config$countries) {
 
   if (x == 0) {
     # copy report and Rmd file
-    copyReport(fname, report_dir = "report", keeps = c("pdf", "knit.md"))
+    copyReport(fname, report_dir = "report", keeps = c("pdf", "knit.md", "Rmd"))
   }
 
   msg("Done ... ", country)

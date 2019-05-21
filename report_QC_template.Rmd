@@ -36,7 +36,6 @@ my_png <- function(file, width, height) {
 
 library(plyr)
 library(ggplot2)
-library(vmstools)
 library(RColorBrewer)
 library(doBy)
 library(reshape2)
