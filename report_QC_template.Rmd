@@ -137,7 +137,7 @@ if (any(is.na(ICES_VE$SI_LONG))) {
   kable(table(`C-square` = ICES_VE$c_square[is.na(ICES_VE$SI_LONG)],
               Year = ICES_VE$year[is.na(ICES_VE$SI_LONG)]), booktabs = TRUE)
 } else {
-  x <- "There were no invalid Statistical Rectangles reported"
+  x <- "There were no invalid c-squares reported"
   attr(x, "format") <- "markdown"
   attr(x, "class") <- "knit_asis"
   x
