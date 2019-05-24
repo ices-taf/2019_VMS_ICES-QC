@@ -39,6 +39,44 @@ my_png <- function(file, width, height) {
 load("bootstrap/data/eurPols.Rdata")
 polLand <- fortify(eurPols)
 ```
+
+```{r set-column-classes}
+colClasses_LE <-
+  c(recordtype = 'character', 
+    country = 'character', 
+    year = 'numeric', 
+    month = 'numeric',
+    ICES_rectangle = 'character', 
+    gear_code = 'character', 
+    LE_MET_level6 = 'character', 
+    fishing_days = 'numeric',
+    vessel_length_category = 'character', 
+    vms_enabled = 'character',
+    kw_fishing_days = 'numeric', 
+    totweight = 'numeric', 
+    totvalue = 'numeric',
+    UniqueVessels = 'numeric')
+
+colClasses_VE <- 
+  c(recordtype = 'character', 
+    country = 'character', 
+    year = 'numeric', 
+    month = 'numeric',
+    c_square = 'character', 
+    vessel_length_category = 'character', 
+    gear_code = 'character', 
+    LE_MET_level6 = 'character',
+    avg_fishing_speed = 'numeric', 
+    fishing_hours = 'numeric', 
+    avg_oal = 'numeric', 
+    kw_fishinghours = 'numeric',
+    totweight = 'numeric', 
+    totvalue = 'numeric', 
+    ICES_avg_fishing_speed = 'numeric', 
+    avg_gearWidth = 'numeric', 
+    UniqueVessels = 'numeric')
+```
+
 <!-- QCTEMPLATE: data -->
 <!------------------------------------------------------------------------------
 Data handling
@@ -174,6 +212,30 @@ data_coverage(coordGrd, spatBound, res = 0.5)
 
 ```{r area-of-data2,  fig.height = 9}
 data_coverage(coordGrd, spatCore, res = 0.05)
+```
+
+\newpage
+
+## Frequency of unique vessel counts by year:
+```{r records-by-unique-vessels}
+if (any(!is.na(ICES_VE$UniqueVessels))) {
+
+  uv_tab <- table(UniqueVessels = ICES_VE$UniqueVessels, year = ICES_VE$year)
+  kable(head(uv_tab, 50), booktabs = TRUE)
+  
+  uv_df <- as.data.frame.table(uv_tab)
+
+  ggplot(uv_df, aes(x = as.numeric(UniqueVessels), y = Freq, col = year)) +
+  geom_line() +
+  xlab("Unique vessel count") + ylab ("No of records") +
+  scale_y_continuous(trans='log10') +
+  theme_icesqc(legend.position = "right")
+} else {
+  x <- "There were no unique vessel counts provided"
+  attr(x, "format") <- "markdown"
+  attr(x, "class") <- "knit_asis"
+  x
+}
 ```
 
 \newpage
@@ -680,6 +742,32 @@ if (any(!is.na(ICES_LE$SI_LONG))) {
 
 \newpage
 
+## Frequency of unique vessel counts by year:
+
+```{r records-by-unique-vessels-le}
+if (any(!is.na(ICES_LE$UniqueVessels))) {
+  uv_tab <- table(UniqueVessels = ICES_LE$UniqueVessels, year = ICES_LE$year)
+  kable(head(uv_tab, 50), booktabs = TRUE)
+  
+  uv_df <- as.data.frame.table(uv_tab)
+
+  ggplot(uv_df, aes(x = as.numeric(UniqueVessels), y = Freq, col = year)) +
+  geom_line() +
+  xlab("Unique vessel count") + ylab ("No of records") + 
+  scale_y_continuous(trans='log10') +
+  theme_icesqc(legend.position = "right")
+
+} else {
+  x <- "There were no unique vessel counts provided"
+  attr(x, "format") <- "markdown"
+  attr(x, "class") <- "knit_asis"
+  x
+}
+```
+
+
+\newpage
+
 ## Frequency of vessel length categories by year:
 ```{r , results='asis'}
 kable(table(ICES_LE$vessel_length_category,ICES_LE$year), booktabs = TRUE)
@@ -689,6 +777,8 @@ qplot(factor(year), data = ICES_LE, geom = "bar", fill = factor(vessel_length_ca
   scale_fill_grey(guide = guide_legend(title = "Length category")) +
   theme_icesqc()
 ```
+
+
 
 \newpage
 
